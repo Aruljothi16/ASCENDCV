@@ -1,0 +1,33 @@
+# Core Dependencies
+streamlit==1.38.0
+pandas==2.2.3
+numpy==1.26.4
+
+# Natural Language Processing
+nltk==3.9.1
+scikit-learn==1.5.2
+PyPDF2==3.0.1
+
+# Data Visualization
+plotly==5.24.1
+
+# Document and PDF Generation
+python-docx==1.1.2
+reportlab==4.2.2
+
+# Database and Security
+sqlite3-binary==0.0.1
+bcrypt==4.2.0
+
+# Utility Libraries
+jsonschema==4.23.0
+
+# (Optional) For better performance and compatibility
+regex==2024.9.11
+requests==2.32.3
+
+# To prevent NLTK data errors, add this note:
+# Run the following commands once after installation:
+# >>> import nltk
+# >>> nltk.download('punkt')
+# >>> nltk.download('stopwords')
