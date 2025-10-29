@@ -1,0 +1,82 @@
+{
+  "web_development": [
+    {
+      "name": "E-Commerce Platform",
+      "skills": ["html", "css", "javascript", "node.js", "mongodb", "express"],
+      "bullets": [
+        "Implemented user authentication system with JWT tokens, shopping cart functionality, and payment gateway integration using Stripe API",
+        "Designed and deployed RESTful API architecture with Express.js backend, supporting 1000+ concurrent users with 99.9% uptime",
+        "Increased user engagement by 45% through responsive design implementation and optimized database queries reducing load time by 60%"
+      ]
+    },
+    {
+      "name": "College Forum",
+      "skills": ["html", "css", "javascript", "php", "mysql"],
+      "bullets": [
+        "Implemented user registration/login, Q&A discussions, private messaging, and profile management",
+        "Designed and deployed a lightweight admin panel for monitoring discussions and moderating content",
+        "Increased student engagement and collaboration by 40% through centralized Q&A discussions and achievement sharing"
+      ]
+    },
+    {
+      "name": "Social Media Dashboard",
+      "skills": ["react", "node.js", "mongodb", "redux", "material-ui"],
+      "bullets": [
+        "Developed real-time social media analytics dashboard using React and Redux for state management across 50+ components",
+        "Integrated third-party APIs (Twitter, Facebook, Instagram) to aggregate user metrics and display comprehensive analytics",
+        "Improved data visualization clarity by 55% using Chart.js and implemented lazy loading reducing initial load time by 40%"
+      ]
+    },
+    {
+      "name": "Task Management System",
+      "skills": ["react", "typescript", "node.js", "postgresql", "graphql"],
+      "bullets": [
+        "Created collaborative task management platform with drag-and-drop interface, deadline tracking, and team assignment features",
+        "Designed GraphQL API architecture enabling efficient data fetching and reducing API calls by 60% compared to REST",
+        "Improved team productivity by 35% through Kanban board implementation, notification system, and progress analytics dashboard"
+      ]
+    }
+  ],
+  "data_science": [
+    {
+      "name": "Customer Sentiment Analysis System",
+      "skills": ["python", "nltk", "scikit-learn", "pandas", "flask"],
+      "bullets": [
+        "Developed NLP-based sentiment analysis system processing 10K+ customer reviews daily with 89% classification accuracy",
+        "Implemented text preprocessing pipeline with tokenization, lemmatization, and TF-IDF vectorization for feature extraction",
+        "Reduced customer complaint response time by 45% through automated sentiment detection and priority routing"
+      ]
+    },
+    {
+      "name": "Sales Forecasting Dashboard",
+      "skills": ["python", "pandas", "scikit-learn", "plotly", "streamlit"],
+      "bullets": [
+        "Built time series forecasting model using ARIMA and LSTM networks predicting sales with 92% accuracy for next quarter",
+        "Created interactive dashboard with Plotly and Streamlit enabling real-time sales tracking and trend visualization",
+        "Improved inventory management efficiency by 40% through accurate demand prediction and automated reorder point calculation"
+      ]
+    }
+  ],
+  "machine_learning": [
+    {
+      "name": "Image Classification System",
+      "skills": ["python", "tensorflow", "keras", "opencv", "flask"],
+      "bullets": [
+        "Developed CNN-based image classification model using transfer learning (ResNet50) achieving 94% accuracy on 50K+ images",
+        "Implemented data augmentation techniques and regularization methods reducing overfitting and improving model generalization",
+        "Deployed model as REST API using Flask handling 500+ requests/second with average response time under 200ms"
+      ]
+    }
+  ],
+  "cloud_devops": [
+    {
+      "name": "CI/CD Pipeline Automation",
+      "skills": ["jenkins", "docker", "kubernetes", "aws", "terraform"],
+      "bullets": [
+        "Designed and implemented automated CI/CD pipeline using Jenkins reducing deployment time from 4 hours to 15 minutes",
+        "Containerized 20+ microservices using Docker and orchestrated deployment on Kubernetes cluster with auto-scaling",
+        "Improved deployment reliability to 99.9% uptime through automated testing, rollback mechanisms, and infrastructure as code"
+      ]
+    }
+  ]
+}
