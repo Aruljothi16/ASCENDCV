@@ -964,13 +964,8 @@ class AdvancedResumeAnalyzer:
             self.all_technical_skills.extend(category_skills)
 
     def load_projects_dataset(self):
-        """Load projects dataset from JSON file"""
-        try:
-            with open('projects_dataset.json', 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return self.create_default_projects_dataset()
-
+        return self.create_default_projects_dataset()
+        
     def create_default_projects_dataset(self):
         """Create default projects dataset"""
         projects_dataset = {
@@ -1019,11 +1014,6 @@ class AdvancedResumeAnalyzer:
         }
         
         # Save to file for future use
-        try:
-            with open('projects_dataset.json', 'w', encoding='utf-8') as f:
-                json.dump(projects_dataset, f, indent=2, ensure_ascii=False)
-        except Exception as e:
-            print(f"Warning: Could not save projects dataset: {e}")
         
         return projects_dataset
 
@@ -2247,7 +2237,7 @@ class EnhancedResumeGenerator:
         doc.add_paragraph()
     # Database Functions
 def init_db():
-    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     c = conn.cursor()
     
     c.execute("""
@@ -2273,7 +2263,7 @@ def init_db():
     conn.close()
 
 def add_user(username, password):
-    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     c = conn.cursor()
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     try:
@@ -2287,20 +2277,21 @@ def add_user(username, password):
         conn.close()
 
 def verify_user(username, password):
-    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     c = conn.cursor()
     c.execute("SELECT password_hash FROM users WHERE username = ?", (username,))
     row = c.fetchone()
     if row:
         stored_hash = row[0]
-        if bcrypt.checkpw(password.encode(), stored_hash):
+        stored = stored_hash if isinstance(stored_hash, bytes) else stored_hash.encode('utf-8')
+        if bcrypt.checkpw(password.encode('utf-8'), stored):
             conn.close()
             return True
     conn.close()
     return False
 
 def save_analysis(username, job_title, match_percentage, analysis_result):
-    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     c = conn.cursor()
     c.execute("""
         INSERT INTO analysis_history (username, job_title, match_percentage, analysis_result)
@@ -2310,7 +2301,7 @@ def save_analysis(username, job_title, match_percentage, analysis_result):
     conn.close()
 
 def get_user_history(username):
-    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     c = conn.cursor()
     c.execute("""
         SELECT id, job_title, match_percentage, analysis_date, analysis_result
@@ -2324,7 +2315,7 @@ def get_user_history(username):
     return history
 
 def get_analysis_by_id(analysis_id):
-    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     c = conn.cursor()
     c.execute("SELECT analysis_result FROM analysis_history WHERE id = ?", (analysis_id,))
     row = c.fetchone()
