@@ -26,20 +26,14 @@ from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 from docx import Document as DocxDocument
 from docx.shared import Inches
+DB_PATH = os.path.join(os.path.expanduser("~"), "ascendcv.db")
 
 # Download required NLTK data
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
+import nltk
+nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)
+nltk.download('stopwords', quiet=True)
+nltk.download('averaged_perceptron_tagger', quiet=True)
 
 # Set page config
 st.set_page_config(
@@ -2253,7 +2247,7 @@ class EnhancedResumeGenerator:
         doc.add_paragraph()
     # Database Functions
 def init_db():
-    conn = sqlite3.connect("ascendcv.db", check_same_thread=False)
+    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
     c = conn.cursor()
     
     c.execute("""
@@ -2279,7 +2273,7 @@ def init_db():
     conn.close()
 
 def add_user(username, password):
-    conn = sqlite3.connect("ascendcv.db", check_same_thread=False)
+    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
     c = conn.cursor()
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     try:
@@ -2293,7 +2287,7 @@ def add_user(username, password):
         conn.close()
 
 def verify_user(username, password):
-    conn = sqlite3.connect("ascendcv.db", check_same_thread=False)
+    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
     c = conn.cursor()
     c.execute("SELECT password_hash FROM users WHERE username = ?", (username,))
     row = c.fetchone()
@@ -2306,7 +2300,7 @@ def verify_user(username, password):
     return False
 
 def save_analysis(username, job_title, match_percentage, analysis_result):
-    conn = sqlite3.connect("ascendcv.db", check_same_thread=False)
+    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
     c = conn.cursor()
     c.execute("""
         INSERT INTO analysis_history (username, job_title, match_percentage, analysis_result)
@@ -2316,7 +2310,7 @@ def save_analysis(username, job_title, match_percentage, analysis_result):
     conn.close()
 
 def get_user_history(username):
-    conn = sqlite3.connect("ascendcv.db", check_same_thread=False)
+    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
     c = conn.cursor()
     c.execute("""
         SELECT id, job_title, match_percentage, analysis_date, analysis_result
@@ -2330,7 +2324,7 @@ def get_user_history(username):
     return history
 
 def get_analysis_by_id(analysis_id):
-    conn = sqlite3.connect("ascendcv.db", check_same_thread=False)
+    conn = sqlite3.connect("DB_PATH", check_same_thread=False)
     c = conn.cursor()
     c.execute("SELECT analysis_result FROM analysis_history WHERE id = ?", (analysis_id,))
     row = c.fetchone()
