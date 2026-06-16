@@ -55,6 +55,8 @@ pip install -r requirements.txt
 
 4. Run the Streamlit app
 
+5. the project has been hosted here check it out: https://ascendcv-pyvxpw8x3sawzrecrq2jyb.streamlit.app/
+
 streamlit run resume.py
 
 
